@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-12">
+        {{#if update}}
+        <h2>Update user</h2>
+        {{else}}
+        <h2>Insert a new user</h2>
+        {{/if}}
+    </div>
+    <div class="col-md-6">
+        <form class="border border-light p-5" method='POST' {{#if update}} action='/users/edit/{{user._id}}' {{else}}
+            action='/users/add' {{/if}}>
+            <input type="text" name="firstName" value="{{user.first_name}}" class="form-control mb-4"
+                placeholder="First">
+            <input type="text" name="lastName" value="{{user.first_name}}" class="form-control mb-4" placeholder="Last">
+            <input type="text" name="username" value="{{user.username}}" class="form-control mb-4"
+                placeholder="Username">
+            <input type="text" name="email" value="{{user.email}}" class="form-control mb-4" placeholder="Email">
+            <input type="number" name="age" value="{{user.age}}" class="form-control mb-4" placeholder="Age">
+            <input type="text" name="short_bio" value="{{user.short_bio}}" class="form-control mb-4" placeholder="Bio">
+            <input type="text" name="phone_number" value="{{user.phone_number}}" class="form-control mb-4"
+                placeholder="Phone number">
+            <input type="text" name="street" value="{{user.address.street}}" class="form-control mb-4"
+                placeholder="Street">
+            <input type="text" name="street_number" value="{{user.address.street_number}}" class="form-control mb-4"
+                placeholder="Street number">
+            <input type="text" name="zip" value="{{user.address.zip}}" class="form-control mb-4" placeholder="Zip">
+            <input type="text" name="country" value="{{user.address.country}}" class="form-control mb-4"
+                placeholder="Country">
+            <input type="text" name="city" value="{{user.address.city}}" class="form-control mb-4" placeholder="City">
+            <input type="text" name="state" value="{{user.address.state}}" class="form-control mb-4"
+                placeholder="State">
+            {{#if update}}
+            <input type="hidden" name="_id" value="{{user._id}}" class="form-control mb-4">
+            {{/if}}
+            <button class="btn btn-info btn-block my-4" type="submit">Add user</button>
+        </form>
+    </div>
+</div>

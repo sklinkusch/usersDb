@@ -1,16 +1,37 @@
 <div class="row">
     <div class="col-12">
-        <h2>Fake Users Seed</h2>
-    </div>
-    <div class="col-sm">
-        <h3>Users</h3>
+
+
+
         {{#if search}}
         {{> search}}
+        {{else}}
+        <h2>Full list</h2>
+        <p>A list of all the user saved in the database</p>
         {{/if}}
+
+        {{#if status }}
+        {{> status}}
+        {{/if}}
+
+        <h3>Users</h3>
+
         <ul>
+            {{#if edit}}
             {{#each users}}
-            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a></li>
+            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a>
+                <a href="../users/edit/{{this._id}}">[edit]</a></li>
             {{/each}}
+            {{else}}
+            {{#each users}}
+<<<<<<< HEAD
+            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a></li>
+=======
+            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a>
+            </li>
+>>>>>>> add_edit
+            {{/each}}
+            {{/if}}
         </ul>
     </div>
 </div>

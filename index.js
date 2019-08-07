@@ -11,10 +11,7 @@ db.connect();
 const main = async () => {
     const users = await UserModel.countDocuments()
     //await db.dropCollection("users");
-    if (users > 0) {
-        console.log("Database contains data, ready to go!");
-    }
-    else { db.seed() }
+    const seeding = (users > 0 ? console.log("Database contains data, ready to go!") : db.seed())
 
     middleware.run()
 }
