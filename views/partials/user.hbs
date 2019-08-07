@@ -3,13 +3,6 @@
         <div class="col-md-4">
             <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip"
                 src="/static/icons/user.jpg">
-            <ul title="Ratings" class="list-inline ratings text-center">
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            </ul>
         </div>
         <div class="col-md-6">
             <div class="table-responsive">
@@ -18,33 +11,30 @@
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-asterisk text-primary"></span>
                                     Id
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user._id}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-user  text-primary"></span>
                                     Name
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.first_name}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-cloud text-primary"></span>
                                     Lastname
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.last_name}}
                             </td>
                         </tr>
@@ -52,11 +42,10 @@
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-bookmark text-primary"></span>
                                     Username
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.username}}
                             </td>
                         </tr>
@@ -65,44 +54,40 @@
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-eye-open text-primary"></span>
                                     Short Bio
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.short_bio}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
                                     Email
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.email}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
                                     Age
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.age}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
                                     Address
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 <ul>
                                     {{#each user.address}}
                                     {{#unless @first}}
@@ -118,22 +103,20 @@
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-calendar text-primary"></span>
                                     created
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.createdAt}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <span class="glyphicon glyphicon-calendar text-primary"></span>
                                     Modified
                                 </strong>
                             </td>
-                            <td class="text-primary">
+                            <td class="text-secondary">
                                 {{user.updatedAt}}
                             </td>
                         </tr>
