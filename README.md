@@ -9,7 +9,7 @@ A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap
 - `npm i`
 - `npm run dev`
 
-## Feautures
+## Features
 *so far*
 
 - Database seeding
