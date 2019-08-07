@@ -1,3 +1,11 @@
 # Node Seed livecoding
 
-A webapplication using Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap 
+A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap 
+
+## Setup & run
+
+- Clone the repo
+- You need a running instance of mongod
+- `npm i`
+- `npm run dev`
+
