@@ -13,6 +13,7 @@ A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap
 *so far*
 
 - Database seeding
+- Express with Handlebars/Bootstrap
 - Users overview
 - Single user infos
 - Search by age greater than
