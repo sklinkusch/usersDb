@@ -61,6 +61,11 @@ exports.run = async () => {
 
     app.post('/users/add', User.addUser)
 
+    app.get('/users/edit/', async (req, res) => {
+        const users = await UserModel.find({}).exec({})
+        res.render('home', { users, edit: true, title: "Update a users infos" })
+    })
+
     app.get('/users/edit/:userId', async (req, res) => {
         const user = await UserModel.findById(req.params.userId).exec({})
         res.render('add', { user, update: true, title: "Update a user in the database" })

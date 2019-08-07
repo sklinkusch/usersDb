@@ -17,9 +17,17 @@
         <h3>Users</h3>
 
         <ul>
+            {{#if edit}}
             {{#each users}}
-            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a></li>
+            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a>
+                <a href="../users/edit/{{this._id}}">[edit]</a></li>
             {{/each}}
+            {{else}}
+            {{#each users}}
+            <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a>
+            </li>
+            {{/each}}
+            {{/if}}
         </ul>
     </div>
 </div>
