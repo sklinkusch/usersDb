@@ -41,14 +41,32 @@ exports.addUser = async (req, res) => {
 
     }
 
-    const newUser = await new UserModel(user)
-        .save()
-        .then(() => {
-            console.log(`User successfully created!`)
-            res.redirect(`/?status=success&msg='User successfully created!'`);
-        })
-        .catch(err => {
-            console.error(err)
-            res.redirect(`/?status=danger&msg='${err}'`);
-        })
+    if (req.body._id) {
+        console.log("It's an update")
+        /* User exists it's an update */
+        const updateUser = await UserModel.updateOne({ _id: req.body._id }, { $set: user })
+            .then(() => {
+                console.log(`User successfully updated!`)
+                res.redirect(`/?status=success&msg='User successfully updated!'`);
+            })
+            .catch(err => {
+                console.error(err)
+                res.redirect(`/?status=danger&msg='${err}'`);
+            })
+    }
+    else {
+        console.log("It's a new insert")
+        /* A new user will be created */
+        const newUser = await new UserModel(user)
+            .save()
+            .then(() => {
+                console.log(`User successfully created!`)
+                res.redirect(`/?status=success&msg='User successfully created!'`);
+            })
+            .catch(err => {
+                console.error(err)
+                res.redirect(`/?status=danger&msg='${err}'`);
+            })
+    }
+
 }
