@@ -9,3 +9,14 @@ A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap
 - `npm i`
 - `npm run dev`
 
+## Feautures
+*so far*
+
+- Database seeding
+- Users overview
+- Single user infos
+- Search by age greater than
+
+## To Do
+- Insert/Modify/Delete user
+- Authentication (JWT)
