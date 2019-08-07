@@ -17,7 +17,8 @@ A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap
 - Users overview
 - Single user infos
 - Search by age greater than
+- Insert & Modify users
 
 ## To Do
-- Insert/Modify/Delete user
+- Delete user
 - Authentication (JWT)
