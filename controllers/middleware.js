@@ -46,11 +46,10 @@ exports.run = async () => {
         )
     })
 
-
     app.get('/users/add', async (req, res) => {
         res.render('add', { title: "Add User" })
     })
 
-    console.log(`View user data on http://localhost:3000`);
-    await app.listen(3000)
+    console.log(`View user data on http://localhost:3001`);
+    await app.listen(3001)
 }
