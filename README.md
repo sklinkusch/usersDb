@@ -1,4 +1,4 @@
-# Node Seed livecoding
+# Mongo Users
 
 A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap 
 
