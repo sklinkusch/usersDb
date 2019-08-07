@@ -13,16 +13,10 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    {{> nav}}
-    <div class="container py-4">
 
-=======
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-        <a class="navbar-brand navbar-brand" href="/">Mongo Users - {{title}}</a>
-    </nav>
+    {{> nav}}
     <div class="container">
->>>>>>> 20614cb7da15dbd6388fa3da8463b38e0db0ba3e
+
         {{{body}}}
     </div>
 
@@ -37,15 +31,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script>
-        document.querySelector("#searchForm").addEventListener('submit', event => {
-            event.preventDefault();
-            console.log("submit")
-            console.log("search/age/" + document.querySelector("#searchInput").value);
-            window.location.href = "search/age/" + document.querySelector("#searchInput").value;
-        });
-
-    </script>
+    <script src="static/js/index.js"></script>
 </body>
 
 </html>

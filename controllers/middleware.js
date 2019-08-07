@@ -19,7 +19,7 @@ exports.run = async () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
-    app.use('/icons', express.static(path.join(__dirname, '../views/icons')))
+    app.use('/static', express.static(path.join(__dirname, '../views/static')))
 
     app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
     app.set('view engine', 'hbs');
@@ -72,6 +72,8 @@ exports.run = async () => {
         const user = await UserModel.findById(req.params.userId).exec({})
         res.render('add', { user, update: true, title: "Update a user in the database" })
     })
+
+    app.post('/users/edit/:userId', User.addUser)
 
 
     console.log(`View user data on http://localhost:3000`);
