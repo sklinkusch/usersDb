@@ -18,18 +18,19 @@
         {{#if empty}}
         {{> empty}}
         {{/if}}
-        {{#if edit}}
+
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
                     <th scope="col">Username</th>
-                    <th scope="col"></th>
+                    {{#if edit}}<th scope="col"></th>{{else}}<th scope="col">Age</th>{{/if}}
                 </tr>
             </thead>
             <tbody>
 
+                {{#if edit}}
                 {{#each users}}
                 <tr>
                     <th scope="col">{{this.first_name}}</th>
@@ -42,15 +43,18 @@
                         <img style="max-width:16px" src="/static/icons/delete.png"></th>
                 </tr>
                 {{/each}}
+
+                {{else}}
+                {{#each users}}
+                <tr>
+                    <th scope="col">{{this.first_name}}</th>
+                    <th scope="col">{{this.last_name}}</th>
+                    <th scope="col">{{this.username}}</th>
+                    <th scope="col">{{this.age}}</th>
+                </tr>
+                {{/each}}
+                {{/if}}
             </tbody>
         </table>
-        {{else}}
-        {{#each users}}
-
-        <li>{{this.first_name}} {{this.last_name}} <a href="../user/{{this._id}}"> ({{this.username}}) </a></li>
-
-        {{/each}}
-        {{/if}}
-        </ul>
     </div>
 </div>
