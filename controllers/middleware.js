@@ -74,6 +74,6 @@ exports.run = async () => {
     })
 
 
-    console.log(`View user data on http://localhost:3001`);
-    await app.listen(3001)
+    console.log(`View user data on http://localhost:3000`);
+    await app.listen(3000)
 }
