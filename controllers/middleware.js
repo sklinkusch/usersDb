@@ -73,9 +73,7 @@ exports.run = async () => {
         res.render('add', { user, update: true, title: "Update a user in the database" })
     })
 
-    app.post('/users/edit/:userId', User.addUser)
 
-
-    console.log(`View user data on http://localhost:3000`);
-    await app.listen(3000)
+    console.log(`View user data on http://localhost:3001`);
+    await app.listen(3001)
 }
