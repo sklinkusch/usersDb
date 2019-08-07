@@ -1,22 +1,145 @@
-<div style="display: table;margin: 0 auto;">
-    <img src="http://via.placeholder.com/300/ff69b4/808080?text=FakePicture">
-    <ul>
-        <div><strong>Name:</strong> {{user.first_name}}</div>
-        <div><strong>Last:</strong> {{user.last_name}}</div>
-        <div><strong>Username:</strong> {{user.username}}</div>
-        <email><strong>Email:</strong> {{user.email}}</email>
-        <div><strong>Age:</strong> {{user.age}}</div>
-        <div><strong>Address:</strong>
-            <ul>
-                {{#each user.address}}
-                {{#unless @first}}
-                <li>
-                    <strong>{{@key}}</strong> {{this}}
-                </li>
-
-                {{/unless}}
-                {{/each}}
+<div class="panel-body inf-content">
+    <div class="row">
+        <div class="col-md-4">
+            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip"
+                src="/static/icons/user.jpg">
+            <ul title="Ratings" class="list-inline ratings text-center">
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
             </ul>
         </div>
-    </ul>
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table table-condensed table-responsive table-user-information">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                    Id
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user._id}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-user  text-primary"></span>
+                                    Name
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.first_name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-cloud text-primary"></span>
+                                    Lastname
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.last_name}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-bookmark text-primary"></span>
+                                    Username
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.username}}
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                    Short Bio
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.short_bio}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                    Email
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.email}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                    Age
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.age}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                    Address
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                <ul>
+                                    {{#each user.address}}
+                                    {{#unless @first}}
+                                    <li>
+                                        <strong>{{@key}}</strong> {{this}}
+                                    </li>
+
+                                    {{/unless}}
+                                    {{/each}}
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                    created
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.createdAt}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                    Modified
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user.updatedAt}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
