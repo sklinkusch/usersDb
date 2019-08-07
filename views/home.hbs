@@ -15,7 +15,6 @@
         {{> status}}
         {{/if}}
 
-        <h3>Users</h3>
         {{#if empty}}
         {{> empty}}
         {{/if}}
@@ -26,7 +25,7 @@
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Edit</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +35,11 @@
                     <th scope="col">{{this.first_name}}</th>
                     <th scope="col">{{this.last_name}}</th>
                     <th scope="col">{{this.username}}</th>
-                    <th scope="col"><a href="../user/{{this._id}}"> </a>
-                        <a title="Edit user {{this.username}}" href="../users/edit/{{this._id}}"><img
-                                style="max-width:16px" src="../static/icons/edit.png"></a>&nbsp;&nbsp;
-                        <img style="max-width:16px" src="../static/icons/delete.png"></th>
+                    <th scope="col"><a href="../user/{{this._id}}"><img style="max-width:24px"
+                                src="/static/icons/view.png"></a>&nbsp;&nbsp;
+                        <a title="Edit user {{this.username}}" href="../users/edit/{{this._id}}">
+                            <img style="max-width:16px" src="/static/icons/edit.png"></a>&nbsp;&nbsp;
+                        <img style="max-width:16px" src="/static/icons/delete.png"></th>
                 </tr>
                 {{/each}}
             </tbody>
