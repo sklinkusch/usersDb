@@ -16,6 +16,9 @@
         {{/if}}
 
         <h3>Users</h3>
+        {{#if empty}}
+        {{> empty}}
+        {{/if}}
         {{#if edit}}
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -32,7 +35,7 @@
                 <tr>
                     <th scope="col">{{this.first_name}}</th>
                     <th scope="col">{{this.last_name}}</th>
-                    <th scope="col">({{this.username}})</th>
+                    <th scope="col">{{this.username}}</th>
                     <th scope="col"><a href="../user/{{this._id}}"> </a>
                         <a title="Edit user {{this.username}}" href="../users/edit/{{this._id}}"><img
                                 style="max-width:16px" src="../static/icons/edit.png"></a>&nbsp;&nbsp;

@@ -48,11 +48,15 @@ exports.run = async () => {
 
     app.get('/search/age/:age', async (req, res) => {
         const users = await UserModel.find({ age: { $gte: req.params.age } }).exec({})
-        console.log(users);
+
+        const empty = users.length <= 0 ? true : false;
+
+
         res.render('home',
             { /* Variables we pass to the view engine */
                 users: users, title: `Search by age greater than ${req.params.age}`,
-                search: true
+                search: true,
+                empty
             }
         )
     })
