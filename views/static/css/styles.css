@@ -1,3 +1,7 @@
 .container{
     padding:1.5rem;
 }
+
+.breadcrumb-item{
+margin-left: 1.5rem;
+}

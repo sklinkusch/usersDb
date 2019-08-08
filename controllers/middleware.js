@@ -19,6 +19,8 @@ exports.run = async () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
+    //req.body
+
     app.use('/static', express.static(path.join(__dirname, '../views/static')))
 
     app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
@@ -36,7 +38,7 @@ exports.run = async () => {
     app.get('/api/', async (req, res) => {
         const users = await UserModel.find({}).exec({})
         console.log(users);
-        return res.send(users);
+        return res.json(users);
     })
 
     app.get('/user/:userId', async (req, res) => {
