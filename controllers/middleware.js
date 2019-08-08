@@ -27,6 +27,7 @@ exports.run = async () => {
     app.set('view engine', 'hbs');
     app.set('views', path.join(__dirname, '../views'));
 
+    /* Home route */
     app.get('/', async (req, res) => {
         const users = await UserModel.find({})
         // console.log(users);
@@ -35,24 +36,45 @@ exports.run = async () => {
         res.render('home', { users, title: "Homepage", status, msg })
     })
 
-    app.get('/api/', async (req, res) => {
-        const users = await UserModel.find({}).exec({})
-        console.log(users);
-        return res.json(users);
-    })
-
-    app.get('/user/:userId', async (req, res) => {
+    /* View single user route */
+    app.get('/users/view/:userId', async (req, res) => {
         const user = await UserModel.findById(req.params.userId)
         console.log(user);
 
         res.render('user', { user, title: "View user's details" })
     })
 
+    /* Add user form */
+    app.get('/users/add', async (req, res) => {
+        res.render('form', { title: "Insert a new user in the database" })
+    })
+
+    /* Insert user with post data */
+    app.post('/users/add', User.manage)
+
+    /* Edit user overview */
+    app.get('/users/edit/', async (req, res) => {
+        const users = await UserModel.find({});
+        res.render('home', { users, edit: true, title: "Update a users infos" })
+    })
+
+    /* Edit user by id */
+    app.get('/users/edit/:userId', async (req, res) => {
+        const user = await UserModel.findById(req.params.userId)
+        res.render('form', { user, update: true, title: "Update a user in the database" })
+    })
+
+    /* Update user with post data */
+    app.post('/users/edit/:userId', User.manage)
+
+    /* Delete user */
+    app.get('/users/del/:userId', User.delete)
+
+    /* Search by age greater then */
     app.get('/search/age/:age', async (req, res) => {
         const users = await UserModel.find({ age: { $gte: req.params.age } })
 
         const empty = users.length <= 0 ? true : false;
-
 
         res.render('home',
             { /* Variables we pass to the view engine */
@@ -63,29 +85,12 @@ exports.run = async () => {
         )
     })
 
-    app.get('/users/add', async (req, res) => {
-        res.render('form', { title: "Insert a new user in the database" })
+    /* Rest API example */
+    app.get('/api/', async (req, res) => {
+        const users = await UserModel.find({}).exec({})
+        console.log(users);
+        return res.json(users);
     })
-
-    app.post('/users/add', User.manage)
-
-
-
-    app.get('/users/edit/', async (req, res) => {
-        const users = await UserModel.find({});
-        res.render('home', { users, edit: true, title: "Update a users infos" })
-    })
-
-    app.get('/users/edit/:userId', async (req, res) => {
-        const user = await UserModel.findById(req.params.userId)
-        res.render('form', { user, update: true, title: "Update a user in the database" })
-    })
-
-    app.post('/users/edit/:userId', User.manage)
-
-
-    app.get('/users/del/:userId', User.delete)
-
 
     console.log(`View user data on http://localhost:3000`);
     await app.listen(3000)
