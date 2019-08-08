@@ -3,7 +3,6 @@ const path = require('path');
 const express = require('express')
 const exphbs = require('express-handlebars');
 const UserModel = require("../models/user");
-
 const User = require("./user")
 
 /* Express routing */

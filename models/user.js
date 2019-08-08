@@ -1,10 +1,11 @@
 const { Schema, model } = require("mongoose");
-
+/* Validation for the email - extension 2 to 6 chars*/
 const validateEmail = (email) => {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
   return re.test(email)
 };
 
+/* User schema */
 const userSchema = new Schema(
   {
     first_name: String,
@@ -35,5 +36,4 @@ const userSchema = new Schema(
 );
 
 const UserModel = model("User", userSchema);
-
 module.exports = UserModel;
