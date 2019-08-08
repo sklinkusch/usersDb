@@ -17,8 +17,7 @@
 
         {{#if empty}}
         {{> empty}}
-        {{/if}}
-
+        {{else}}
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -29,6 +28,8 @@
                 </tr>
             </thead>
             <tbody>
+                {{/if}}
+
 
                 {{#if edit}}
                 {{#each users}}
