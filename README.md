@@ -2,6 +2,8 @@
 
 A web-application with Node, Mongodb, Mongoose, Express, Handlebars & Bootstrap 
 
+<img src="./screen.png" height="300px">
+
 ## Setup & run
 
 - Clone the repo
