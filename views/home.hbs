@@ -40,7 +40,8 @@
                                 src="/static/icons/view.png"></a>&nbsp;&nbsp;
                         <a title="Edit user {{this.username}}" href="../users/edit/{{this._id}}">
                             <img style="max-width:16px" src="/static/icons/edit.png"></a>&nbsp;&nbsp;
-                        <img style="max-width:16px" src="/static/icons/delete.png"></th>
+                        <a title="delete user {{this.username}}" href="/users/del/{{this._id}}"><img
+                                style="max-width:16px" src="/static/icons/delete.png"></a></th>
                 </tr>
                 {{/each}}
 

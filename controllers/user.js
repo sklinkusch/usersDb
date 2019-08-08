@@ -1,6 +1,7 @@
 const faker = require("faker");
 const UserModel = require("../models/user");
 
+
 exports.create = (amount = 5) =>
     new Array(amount).fill(0).map(() => ({
         first_name: faker.name.firstName(),
@@ -20,7 +21,7 @@ exports.create = (amount = 5) =>
         phone_number: faker.phone.phoneNumber()
     }));
 
-exports.addUser = async (req, res) => {
+exports.manage = async (req, res) => {
     const user = {
 
         first_name: req.body.firstName,
@@ -41,10 +42,14 @@ exports.addUser = async (req, res) => {
 
     }
 
-    if (req.body._id) {
+
+    if (req.body._id) { //req.params.userId
         console.log("It's an update")
         /* User exists it's an update */
-        const updateUser = await UserModel.updateOne({ _id: req.body._id }, { $set: user })
+
+        /* Validator for Updates https://mongoosejs.com/docs/validation.html#update-validators */
+
+        const updateUser = await UserModel.updateOne({ _id: req.body._id }, { $set: user }, { runValidators: true })
             .then(() => {
                 console.log(`User successfully updated!`)
                 res.redirect(`/?status=success&msg='User successfully updated!'`);
@@ -70,3 +75,20 @@ exports.addUser = async (req, res) => {
     }
 
 }
+
+
+exports.delete = async (req, res) => {
+    const user = await UserModel.findById(req.params.userId)
+    console.log(user)
+
+    const deleteUser = await UserModel.deleteOne({ _id: req.params.userId })
+        .then(() => {
+            console.log(`User successfully deleted!`)
+            res.redirect(`/?status=success&msg='User successfully deleted!'`);
+        })
+        .catch(err => {
+            console.error(err)
+            res.redirect(`/?status=danger&msg='${err}'`);
+        })
+
+} 

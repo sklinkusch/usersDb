@@ -28,7 +28,7 @@ exports.run = async () => {
     app.set('views', path.join(__dirname, '../views'));
 
     app.get('/', async (req, res) => {
-        const users = await UserModel.find({}).exec({})
+        const users = await UserModel.find({})
         // console.log(users);
 
         const { status, msg } = req.query;
@@ -42,14 +42,14 @@ exports.run = async () => {
     })
 
     app.get('/user/:userId', async (req, res) => {
-        const user = await UserModel.findById(req.params.userId).exec({})
+        const user = await UserModel.findById(req.params.userId)
         console.log(user);
 
         res.render('user', { user, title: "View user's details" })
     })
 
     app.get('/search/age/:age', async (req, res) => {
-        const users = await UserModel.find({ age: { $gte: req.params.age } }).exec({})
+        const users = await UserModel.find({ age: { $gte: req.params.age } })
 
         const empty = users.length <= 0 ? true : false;
 
@@ -64,22 +64,27 @@ exports.run = async () => {
     })
 
     app.get('/users/add', async (req, res) => {
-        res.render('add', { title: "Insert a new user in the database" })
+        res.render('form', { title: "Insert a new user in the database" })
     })
 
-    app.post('/users/add', User.addUser)
+    app.post('/users/add', User.manage)
+
+
 
     app.get('/users/edit/', async (req, res) => {
-        const users = await UserModel.find({}).exec({})
+        const users = await UserModel.find({});
         res.render('home', { users, edit: true, title: "Update a users infos" })
     })
 
     app.get('/users/edit/:userId', async (req, res) => {
-        const user = await UserModel.findById(req.params.userId).exec({})
-        res.render('add', { user, update: true, title: "Update a user in the database" })
+        const user = await UserModel.findById(req.params.userId)
+        res.render('form', { user, update: true, title: "Update a user in the database" })
     })
 
-    app.post('/users/edit/:userId', User.addUser)
+    app.post('/users/edit/:userId', User.manage)
+
+
+    app.get('/users/del/:userId', User.delete)
 
 
     console.log(`View user data on http://localhost:3000`);
