@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "name": "dbUser",
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node-server@canary"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/.*",
+            "dest": "/"
+        }
+    ]
+}
