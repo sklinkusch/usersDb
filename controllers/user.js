@@ -31,6 +31,8 @@ module.exports = {
             age: req.body.age,
             username: req.body.username,
             short_bio: req.body.short_bio,
+            password: req.body.password,
+            tokens: req.body.tokens,
             address: {
                 street: req.body.street,
                 street_number: req.body.street_number,

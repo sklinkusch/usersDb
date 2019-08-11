@@ -19,6 +19,21 @@ const userSchema = new Schema(
       required: 'Email address is required',
       validate: [validateEmail, 'Please fill a valid email address']
     },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6
+    },
+    tokens: [{
+      access: {
+        type: String,
+        required: true
+      },
+      token: {
+        type: String,
+        required: true
+      }
+    }], 
     age: Number,
     username: String,
     short_bio: String,
