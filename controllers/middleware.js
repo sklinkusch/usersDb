@@ -5,6 +5,8 @@ const exphbs = require('express-handlebars');
 const UserModel = require("../models/user");
 const User = require("./user")
 
+var {authenticate} = require('./authenticate');
+
 /* Express routing */
 exports.run = async () => {
 
@@ -84,21 +86,8 @@ exports.run = async () => {
         )
     })
 
-
-    app.get('/users/me', async(req, res) => {
-        var token = req.header('x-auth');
-        console.log('heere')
-        var User = new UserModel();
-        console.log(User)
-        UserModel.findByToken(token).then((user) => {
-            if (!user) {
-                return Promise.reject();
-            }
-
-            res.send(user);
-        }).catch((e) => {
-            res.status(401).send();
-        });
+    app.get('/users/me', authenticate, async(req, res) => {
+      res.send(req.user);
     })
 
     /* Rest API example */
