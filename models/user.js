@@ -66,5 +66,20 @@ userSchema.methods.generateAuthToken = function () {
   });
 }
 
+userSchema.statics.findByToken = function (token) {
+  let User = this;
+  let decoded;
+  try {
+    decoded = jwt.verify(token, 'iAmVerySecret');
+  } catch (e) {
+
+  }
+  return User.findOne({
+    _id: decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
+  });
+};
+
 const UserModel = model("User", userSchema);
 module.exports = UserModel;
