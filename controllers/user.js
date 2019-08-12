@@ -7,6 +7,8 @@ module.exports = {
         new Array(amount).fill(0).map(() => ({
             first_name: faker.name.firstName(),
             last_name: faker.name.lastName(),
+            password: faker.internet.password(),
+            tokens: [],
             email: faker.internet.email(),
             age: Math.floor(Math.random() * 70 + 18),
             username: faker.internet.userName(),
@@ -31,6 +33,8 @@ module.exports = {
             age: req.body.age,
             username: req.body.username,
             short_bio: req.body.short_bio,
+            password: faker.internet.password(),
+            tokens: [],
             address: {
                 street: req.body.street,
                 street_number: req.body.street_number,
