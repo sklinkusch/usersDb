@@ -33,7 +33,7 @@ module.exports = {
             age: req.body.age,
             username: req.body.username,
             short_bio: req.body.short_bio,
-            password: faker.internet.password(),
+            password: req.body.password,
             tokens: [],
             address: {
                 street: req.body.street,
@@ -68,9 +68,13 @@ module.exports = {
             /* A new user will be created */
             const newUser = await new UserModel(user)
                 .save()
-                .then(() => {
+                .then((user) => {
+                    return user.generateAuthToken();
+                }).then((user) => {
                     console.log(`User successfully created!`)
-                    res.redirect(`/?status=success&msg='User successfully created!'`);
+                    res.header('x-auth', user.tokens[0].token);
+                    res.send(user);
+                    // res.redirect(`/?status=success&msg='User successfully created!'`);
                 })
                 .catch(err => {
                     console.error(err)

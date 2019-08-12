@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const jwt = require("jsonwebtoken");
 /* Validation for the email - extension 2 to 6 chars*/
 const validateEmail = (email) => {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
@@ -49,6 +50,21 @@ const userSchema = new Schema(
   },
   { strict: "throw", timestamps: true }
 );
+
+userSchema.methods.generateAuthToken = function () {
+  let user = this;
+  let access = 'auth';
+  let token = jwt.sign({ _id: user._id.toHexString(), access }, 'iAmVerySecret');
+  console.log('TOOOKEEEEN', token);
+
+  user.tokens.push({
+    access,
+    token
+  });
+  return user.save().then(() => {
+    return user;
+  });
+}
 
 const UserModel = model("User", userSchema);
 module.exports = UserModel;
