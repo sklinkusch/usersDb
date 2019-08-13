@@ -1,7 +1,10 @@
-var {UserModel} = require('./../models/user')
+const UserModel = require('../models/user')
 
+/**Authentication method -> check if user exists with this token */
 var authenticate = (req, res, next) => {
     var token = req.header('x-auth');
+
+    console.log(`token is ${token}`)
 
     UserModel.findByToken(token).then((user) => {
         if (!user) {
@@ -16,4 +19,4 @@ var authenticate = (req, res, next) => {
     });
 }
 
-module.exports = {authenticate};
+module.exports = { authenticate };

@@ -34,7 +34,7 @@ const userSchema = new Schema(
         type: String,
         required: true
       }
-    }], 
+    }],
     age: Number,
     username: String,
     short_bio: String,
@@ -51,19 +51,19 @@ const userSchema = new Schema(
   { strict: "throw", timestamps: true }
 );
 
-userSchema.methods.generateAuthToken = function() {
+userSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
-  var token = jwt.sign({_id: user._id.toHexString(), access}, 'iAmVerySecret').toString();
+  var token = jwt.sign({ _id: user._id.toHexString(), access }, 'iAmVerySecret').toString();
 
   // user.tokens = user.tokens.concat([{access, token}])
-  user.tokens.push({access, token});
+  user.tokens.push({ access, token });
   return user.save().then(() => {
     return user;
   });
 }
 
-userSchema.statics.findByToken = function(token) {
+userSchema.statics.findByToken = function (token) {
   var User = this;
   var decoded;
 
