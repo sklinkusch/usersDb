@@ -84,6 +84,14 @@ exports.run = async () => {
         )
     })
 
+    app.get('/users/login', async (req,res) => {
+        res.render('login')
+    });
+
+    app.post('/users/login', async (req,res) => {
+        console.log(`code received ${req.body.email}`)
+    })
+
     app.get('/users/me', async (req, res) => {
         let token = req.header('x-auth');
         UserModel.findByToken(token).then((user) => {
