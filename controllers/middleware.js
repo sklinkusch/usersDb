@@ -2,10 +2,12 @@
 const path = require('path');
 const express = require('express')
 const exphbs = require('express-handlebars');
+const cookieParser = require('cookie-parser')
+
 const UserModel = require("../models/user");
 const User = require("./user")
 
-var {authenticate} = require('./authenticate');
+const { login, authenticate } = require('./authenticate');
 
 /* Express routing */
 exports.run = async () => {
@@ -20,6 +22,8 @@ exports.run = async () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
+    app.use(cookieParser())
+
     //req.body
 
     app.use('/static', express.static(path.join(__dirname, '../views/static')))
@@ -31,7 +35,9 @@ exports.run = async () => {
     /* Home route */
     app.get('/', async (req, res) => {
         const users = await UserModel.find({})
-        // console.log(users);
+
+        if (req && req.cookies['loggedUser'])
+            app.locals.loggedUser = req.cookies['loggedUser']
 
         const { status, msg } = req.query;
         res.render('home', { users, title: "Homepage", status, msg })
@@ -86,8 +92,22 @@ exports.run = async () => {
         )
     })
 
-    app.get('/users/me', authenticate, async(req, res) => {
-      res.send(req.user);
+    app.get('/users/login', async (req, res) => {
+        res.render('login')
+    })
+
+    app.post('/users/login', login)
+
+
+    app.get('/users/logout', async (req, res) => {
+        res.clearCookie("x-auth");
+        res.clearCookie("loggedUser");
+        app.locals.loggedUser = '';
+        res.redirect('/');
+    })
+
+    app.get('/users/me', authenticate, async (req, res) => {
+        res.send(req.user);
     })
 
     /* Rest API example */

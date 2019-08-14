@@ -1,5 +1,9 @@
 const { Schema, model } = require("mongoose");
 const jwt = require('jsonwebtoken')
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 /* Validation for the email - extension 2 to 6 chars*/
 const validateEmail = (email) => {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
@@ -70,7 +74,7 @@ userSchema.statics.findByToken = function (token) {
   try {
     decoded = jwt.verify(token, 'iAmVerySecret')
   } catch (e) {
-
+    console.log(e)
   }
 
   return User.findOne({

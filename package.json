@@ -12,6 +12,8 @@
   "author": "Leandro <leandro@digitalcareerinstitute.de> (https://digitalcareerinstitute.de)",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "faker": "^4.1.0",
