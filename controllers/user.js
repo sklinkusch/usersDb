@@ -1,16 +1,20 @@
 const faker = require("faker");
 const UserModel = require("../models/user");
+const bcrypt = require('bcrypt');
 
 module.exports = {
     /* Create fake users */
     create: (amount = 5) =>
+
         new Array(amount).fill(0).map(() => ({
             first_name: faker.name.firstName(),
             last_name: faker.name.lastName(),
+            password: faker.internet.password(),
             email: faker.internet.email(),
             age: Math.floor(Math.random() * 70 + 18),
             username: faker.internet.userName(),
             short_bio: faker.lorem.text(),
+            tokens: [],
             address: {
                 street: faker.address.streetName(),
                 street_number: Math.floor(Math.random() * 7000 + 0),
@@ -23,6 +27,8 @@ module.exports = {
         })),
     /* Manage a user - insert/delete */
     manage: async (req, res) => {
+
+        let hash = bcrypt.hashSync(req.body.password, 10);
         const user = {
 
             first_name: req.body.firstName,
@@ -31,6 +37,7 @@ module.exports = {
             age: req.body.age,
             username: req.body.username,
             short_bio: req.body.short_bio,
+            password: hash,
             address: {
                 street: req.body.street,
                 street_number: req.body.street_number,
@@ -64,9 +71,13 @@ module.exports = {
             /* A new user will be created */
             const newUser = await new UserModel(user)
                 .save()
-                .then(() => {
+                .then((user) => {
+                    return user.generateAuthToken();
+                }).then((user) => {
                     console.log(`User successfully created!`)
-                    res.redirect(`/?status=success&msg='User successfully created!'`);
+                    res.header('x-auth', user.tokens[0].token);
+                    res.send(user);
+                    // res.redirect(`/?status=success&msg='User successfully created!'`);
                 })
                 .catch(err => {
                     console.error(err)

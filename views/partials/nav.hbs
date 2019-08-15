@@ -16,7 +16,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="/users/edit">Manage Users</a>
             </li>
+            {{#if loggedUser}}
+            <li class="nav-item">
+                <a class="nav-link" href="/users/logout">Logout</a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+                <a class="nav-link" href="/users/login">Login</a>
+            </li>
+            {{/if}}
         </ul>
+        <span>{{>auth}}</span>
+
         <form id="searchForm" class="form-inline my-2 my-lg-0">
             <input id="searchInput" class="form-control mr-sm-2" type="number" placeholder="Search by age"
                 aria-label="Search">

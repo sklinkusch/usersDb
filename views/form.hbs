@@ -16,6 +16,7 @@
                 placeholder="Username">
             <input type="text" name="email" value="{{user.email}}" class="form-control mb-4" placeholder="Email"
                 required>
+            <input type="password" name="password" value="" class="form-control mb-4" placeholder="Password" required>
             <input type="number" name="age" value="{{user.age}}" class="form-control mb-4" placeholder="Age">
             <input type="text" name="short_bio" value="{{user.short_bio}}" class="form-control mb-4" placeholder="Bio">
             <input type="text" name="phone_number" value="{{user.phone_number}}" class="form-control mb-4"
@@ -33,7 +34,11 @@
             {{#if update}}
             <input type="hidden" name="_id" value="{{user._id}}" class="form-control mb-4">
             {{/if}}
+            {{#if update}}
+            <button class="btn btn-info btn-block my-4" type="submit">Update user</button>
+            {{else}}
             <button class="btn btn-info btn-block my-4" type="submit">Add user</button>
+            {{/if}}
         </form>
     </div>
 </div>
