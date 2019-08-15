@@ -1,5 +1,9 @@
 const { Schema, model } = require("mongoose");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 /* Validation for the email - extension 2 to 6 chars*/
 const validateEmail = (email) => {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
@@ -52,34 +56,34 @@ const userSchema = new Schema(
 );
 
 userSchema.methods.generateAuthToken = function () {
-  let user = this;
-  let access = 'auth';
-  let token = jwt.sign({ _id: user._id.toHexString(), access }, 'iAmVerySecret');
-  console.log('TOOOKEEEEN', token);
+  var user = this;
+  var access = 'auth';
+  var token = jwt.sign({ _id: user._id.toHexString(), access }, 'iAmVerySecret').toString();
 
-  user.tokens.push({
-    access,
-    token
-  });
+  // user.tokens = user.tokens.concat([{access, token}])
+  user.tokens.push({ access, token });
   return user.save().then(() => {
     return user;
   });
 }
 
 userSchema.statics.findByToken = function (token) {
-  let User = this;
-  let decoded;
+  var User = this;
+  var decoded;
+
   try {
-    decoded = jwt.verify(token, 'iAmVerySecret');
+    decoded = jwt.verify(token, 'iAmVerySecret')
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
+
   return User.findOne({
     _id: decoded._id,
     'tokens.token': token,
     'tokens.access': 'auth'
-  });
-};
+  })
+}
+
 
 const UserModel = model("User", userSchema);
 module.exports = UserModel;

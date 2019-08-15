@@ -1,18 +1,20 @@
 const faker = require("faker");
 const UserModel = require("../models/user");
+const bcrypt = require('bcrypt');
 
 module.exports = {
     /* Create fake users */
     create: (amount = 5) =>
+
         new Array(amount).fill(0).map(() => ({
             first_name: faker.name.firstName(),
             last_name: faker.name.lastName(),
             password: faker.internet.password(),
-            tokens: [],
             email: faker.internet.email(),
             age: Math.floor(Math.random() * 70 + 18),
             username: faker.internet.userName(),
             short_bio: faker.lorem.text(),
+            tokens: [],
             address: {
                 street: faker.address.streetName(),
                 street_number: Math.floor(Math.random() * 7000 + 0),
@@ -25,6 +27,8 @@ module.exports = {
         })),
     /* Manage a user - insert/delete */
     manage: async (req, res) => {
+
+        let hash = bcrypt.hashSync(req.body.password, 10);
         const user = {
 
             first_name: req.body.firstName,
@@ -33,8 +37,7 @@ module.exports = {
             age: req.body.age,
             username: req.body.username,
             short_bio: req.body.short_bio,
-            password: req.body.password,
-            tokens: [],
+            password: hash,
             address: {
                 street: req.body.street,
                 street_number: req.body.street_number,
